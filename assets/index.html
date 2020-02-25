@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pokedex</title>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <meta name="author" content="Martita Apel Acharán" />
+    <meta name="description" content="Pokedex" />
+    <meta name="keywords" content="pokemon, nintendo, pokedex, game" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384- UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <img src="img/nintendo.png" alt="Nintendo" class="navbar__logo" />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNavAltMarkup"
+        >
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#"
+              ><i class="far fa-user-circle"></i> Regístrate
+              <span class="sr-only">(current)</span></a
+            >
+            <a class="nav-item nav-link" href="#"
+              ><i class="fas fa-home"></i> Inicio</a
+            >
+            <a class="nav-item nav-link" href="#"
+              ><i class="fas fa-shopping-cart"></i> Tienda</a
+            >
+            <a class="nav-item nav-link" href="#"
+              ><i class="fas fa-newspaper"></i> News</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pokemon">
+      <img
+        src="img/pokemon.png"
+        alt="Pokeball"
+        class="pokemon__tada col-10 col-lg-8"
+      />
+      <div class="pokemon__pokeball row">
+        <img src="img/favicon.png" alt="Pokeball" class="pokeball col-4" />
+        <img src="img/favicon.png" alt="Pokeball" class="pokeball col-4" />
+        <img src="img/favicon.png" alt="Pokeball" class="pokeball col-4" />
+      </div>
+    </header>
+
+    <div id="buscador" class="navbar navbar-light justify-content-center">
+      <form id="search__nombre" class="form-inline">
+        <input
+          id="search__input"
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Id o Nombre"
+          aria-label="Search"
+        />
+        <button
+          id="search__boton"
+          class="btn btn-outline-success my-2 my-sm-0"
+          type="submit"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+
+      <form id="search__filtro" class="form-inline">
+        <input
+          id="filtro__input"
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Filtrar por Tipo"
+          aria-label="Search"
+        />
+        <button
+          id="filtro__boton"
+          class="btn btn-outline-success my-2 my-sm-0"
+          type="submit"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+
+      <div class="pokedex">
+        <div class="pokedex__titulo col-9 col-lg-5">
+          <img src="img/pokedex-logo.png" alt="Pokedex" />
+        </div>
+      </div>
+    </div>
+
+    <div class="pokemon__lista">
+      <p class="pokemon"></p>
+      <p id="buscadorPokemones"></p>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__iconos">
+        <a class="footer_icon" href=""
+          ><i class="fab fa-facebook-square"> </i
+        ></a>
+        <a class="footer_icon" href=""><i class="fab fa-instagram"></i></a>
+        <a class="footer_icon" href=""><i class="fab fa-twitter"></i></a>
+      </div>
+      <p>© 2020 Pokemon SPA.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>

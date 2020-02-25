@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+#navbar {
+  background-color: #003257;
+}
+
+.navbar__logo {
+  width: 150px;
+}
+
+/* Media queries */
+@media screen and (max-widht: 876px) {
+  .navbar-nav {
+    text-align: right;
+  }
+}
+.pokemon {
+  background-image: linear-gradient(0deg, #a1c4fd 0%, #c2e9fb 100%);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon__tada {
+  width: 100%;
+  margin: 20px;
+  animation: tada 1.5s ease 1s;
+}
+
+.pokemon__pokeball {
+  justify-content: center;
+  align-items: center;
+}
+
+.pokeball {
+  width: 80px;
+  padding: 0 10px 35px 10px;
+  animation: lightSpeedIn 1s ease-out 1s;
+}
+
+#buscador {
+  background-color: #ffd100;
+  align-items: center;
+}
+
+#search__nombre,
+#search__filtro {
+  margin: 20px;
+}
+
+#search__input,
+#filtro__input {
+  border: 0;
+  font-size: 30px;
+  font-weight: lighter;
+  padding: 35px 15px;
+}
+
+#search__boton,
+#filtro__boton {
+  background-color: #df001e;
+  border: 0;
+  color: white;
+  margin-left: 10px;
+}
+#search__boton:hover,
+#filtro__boton:hover {
+  color: #e6e7e7;
+}
+#search__boton i,
+#filtro__boton i {
+  font-size: 30px;
+  padding: 15px 10px;
+}
+
+@media screen and (max-width: 576px) {
+  #search__nombre,
+#search__filtro {
+    flex-wrap: nowrap;
+    margin: 10px 0 0 0;
+  }
+
+  #search__input,
+#filtro__input {
+    font-size: 18px;
+    font-weight: lighter;
+  }
+}
+.pokedex {
+  background-color: #ffd100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+footer {
+  background-color: #003257;
+  color: white;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer .footer_icon i {
+  color: white;
+  font-size: 40px;
+  padding: 5px;
+}
+footer .footer_icon i:hover {
+  color: #e6e7e7;
+}
+
+footer p {
+  margin: 0;
+}
+
+@media screen and (max-width: 567px) {
+  footer {
+    display: block;
+    text-align: center;
+  }
+  footer p {
+    padding-top: 20px;
+  }
+}

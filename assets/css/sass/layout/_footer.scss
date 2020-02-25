@@ -1,0 +1,33 @@
+footer {
+  background-color: $azul;
+  color: white;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .footer_icon i {
+    color: white;
+    font-size: 40px;
+    padding: 5px;
+
+    &:hover {
+      color: $platinum;
+    }
+  }
+}
+
+footer p {
+  margin: 0;
+}
+
+@media screen and (max-width: 567px) {
+  footer {
+    display: block;
+    text-align: center;
+
+    p {
+      padding-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+#navbar {
+  background-color: $azul;
+}
+.navbar__logo {
+  width: 150px;
+}
+
+/* Media queries */
+@media screen and (max-widht: 876px) {
+  .navbar-nav {
+    text-align: right;
+  }
+}
