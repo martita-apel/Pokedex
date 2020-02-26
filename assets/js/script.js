@@ -1,5 +1,7 @@
 $(document).ready(function() {
   cargarPokemones();
+  $(".pokemon__nombre").hide();
+  $(".pokemon__filtro").hide();
 });
 
 function cargarPokemones() {
@@ -21,7 +23,7 @@ $("#search__boton").click(function(e) {
   e.preventDefault();
   var cargar = $("#search__input")[0].value;
   if (cargar == "") {
-    alert("");
+    alert("No has ingresado ningún Pokemon (en inglés).");
   } else {
     nombrePokemon(cargar);
   }
@@ -29,47 +31,121 @@ $("#search__boton").click(function(e) {
   function nombrePokemon(id) {
     $.get("https://pokeapi.co/api/v2/pokemon/" + id, function(data) {
       console.log(data);
+      $(".pokemon__nombre").show();
 
-      $(".pokemon")[0].innerHTML = data.name;
+      $("#pokemon")[0].innerHTML = data.name.toUpperCase();
+      $("#pokemonimg")[0].src = data.sprites.front_default;
+
+      const colores = {
+        normal: "#D3D3D3",
+        fire: "#FF7800",
+        water: "#00BDFF",
+        electric: "#FFFC26",
+        grass: "#18D84C",
+        ice: "#0CF7D7",
+        fighting: "#F0195E",
+        poison: "#7E00BD",
+        ground: "#905E00",
+        flying: "#9060FF",
+        psychic: "#07CAAC",
+        bug: "#68BE01",
+        rock: "#9D9861",
+        ghost: "#46358E",
+        dragon: "#016F40",
+        dark: "#463D52",
+        steel: "#AACDCF",
+        fairy: "#FF9A6B",
+        unknown: "#FFCA8E",
+        shadow: "#002E7F"
+      };
+
+      let tipo = "";
+      for (let i = 0; i < data.types.length; i++) {
+        tipo += data.types[i].type.name + " ";
+        let color = colores[data.types[i].type.name];
+
+        // tipo +=
+        //   "<span style=backgroundColor:" +
+        //   "colores[data.types[i].type.name]" +
+        //   ">" +
+        //   data.types[i].type.name +
+        //   "</span>" +
+        //   " ";
+        // tipo += data.types[i].type.name.fontcolor("green") + " ";
+      }
+      $("#pokemontipo")[0].innerHTML = tipo.color;
+
+      let habilidad = [];
+      for (let i = 0; i < data.abilities.length; i++) {
+        habilidad += data.abilities[i].ability.name + " / ";
+        // console.log(habilidad.join(" - "));
+      }
+
+      $("#pokemonhab")[0].innerHTML += habilidad;
     });
   }
 });
 
-//     if (id !== "") {
-//       obtenerpokemon(id);
-//     } else{
-//       $("#errorMesagge")[0].innerHTML = "No has ingresado ningún dato.";
-//     }
-//       function obtenerpokemon(id) {
-//         $.get("https://pokeapi.co/api/v2/pokemon") + id,
-//           data => {
-//             console.log(data);
+// Buscador por filtros
 
-//             $("#nombrePokemon")[0].innerHTML = data.name.toUpperCase();
-//             $("#pokeImg")[0].src = data.sprites.front_default;
-//             // $("#pokeImg").show();
-//             let ability = "<ul>";
-//             data.abilities.forEach (a =>{
-//               ability += "<li>" + a.ability.name + "</li>";
-//             });
-//             // for(let = 0; data.abilities.length; i++){
-//             //   ability += data.abilities[i].ability.name;
-//             }
-//             ability += "/ul>";
-//             $("#description")[0].innerHTML = ability;
-//             $("$result").show();
-//           };
-//       }
-//     $.ajax({
-//       type: "GET",
-//       url: "https://pokeapi.co/api/v2/",
-//       dataType: "json",
-//       success: function(data) {
-//         console.log(data);
-//       }
-//     });
-//   });
-// });
+$("#filtro__boton").click(function(e) {
+  e.preventDefault();
+  var cargar = $("#filtro__input")[0].value;
+  if (cargar == "") {
+    alert("");
+  } else {
+    filtrarPokemon(cargar);
+  }
+
+  function filtrarPokemon(cargar) {
+    $("#filtro").html("");
+
+    $.get("https://pokeapi.co/api/v2/type/" + cargar, function(data) {
+      console.log(data);
+      $(".pokemon__filtro").show();
+      let lista = data.pokemon;
+
+      let tipos = "";
+      for (let i = 0; i < lista.length; i++) {
+        tipos +=
+          "<div class='card filtro_card col-8 col-md-4 col-lg-3'>" +
+          "<img src='' id='filtroimg' class='card-img-top' alt='' />" +
+          "<div class='card-body filtro-datos row'>" +
+          "<h5 class='card-title'>" +
+          lista[i].pokemon.name.toUpperCase() +
+          "</h5>" +
+          "<button type='button' class='btn btn-primary' data-toggle='modal'" +
+          "data-target='#exampleModal'>Ver más</button>" +
+          "</div>" +
+          "</div>" +
+          "<br>" +
+          // Empieza Modal
+          '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"' +
+          'aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+          '<div class="modal-dialog" role="document">' +
+          '<div class="modal-content">' +
+          '<div class="modal-header">' +
+          '<h5 class="modal-title" id="exampleModalLabel">' +
+          lista[i].pokemon.name.toUpperCase() +
+          "</h5>" +
+          "</div>" +
+          '<div class="modal-body">...</div>' +
+          '<div class="modal-footer">' +
+          '<button type="button" class="btn btn-secondary" data-dismiss="modal"' +
+          ">" +
+          "Cerrar" +
+          "</button>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>";
+        console.log(tipos);
+      }
+
+      $("#filtro")[0].innerHTML = tipos;
+    });
+  }
+});
 
 // GitHub
 // var request = require("request");
@@ -95,32 +171,3 @@ $("#search__boton").click(function(e) {
 //   getPokemon: function(req, res, next) {},
 //   getRandomTeam: function(req, res, next) {}
 // };
-
-// var NombresPokemon = [
-//   "bulbasaur",
-//   "pikachu",
-//   "charmander",
-//   "chicorita",
-//   "gigilipuf",
-//   "snorlackssss"
-// ];
-// var num = 0;
-// while (num < 6) {
-//   console.log(NombresPokemon[num] + "con while ");
-//   num++;
-// }
-// for (let i = 0; i < NombresPokemon.length; i++) {
-//   console.log(NombresPokemon[i] + "con for normalito");
-// }
-// NombresPokemon.map(x => {
-//   console.log(x + " con map :) ");
-// });
-// NombresPokemon.forEach(e => {
-//   console.log(e + "con forEach");
-// });
-// for (i in NombresPokemon) {
-//   console.log(NombresPokemon[i] + "con for in");
-// }
-// for (t of NombresPokemon) {
-//   console.log(t + "con for of");
-// }

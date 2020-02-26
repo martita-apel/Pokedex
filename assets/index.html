@@ -116,15 +116,67 @@
       </form>
 
       <div class="pokedex">
-        <div class="pokedex__titulo col-9 col-lg-5">
+        <div class="pokedex__titulo col-8 col-md-7 col-lg-5">
           <img src="img/pokedex-logo.png" alt="Pokedex" />
         </div>
       </div>
     </div>
 
-    <div class="pokemon__lista">
-      <p class="pokemon"></p>
-      <p id="buscadorPokemones"></p>
+    <div class="pokemon__nombre">
+      <div class="card nombre_card">
+        <div class="pokemon__img col-md-5">
+          <img src="" id="pokemonimg" class="card-img" alt="..." />
+        </div>
+        <div class="col-md-7">
+          <div class="card-body pokemon_card">
+            <h2 id="pokemon" class="card-title">Card title</h2>
+            <h4 id="pokemontipo" class="card-text"></h4>
+            <hr />
+            <p>Habilidades:</p>
+            <h6 id="pokemonhab" class="card-text"></h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="filtro" class="pokemon__filtro row">
+      <!-- <div class="card filtro_card col-12 col-md-6 col-lg-4">
+        <img src="" id="filtroimg" class="card-img-top" alt="" />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div> -->
+
+      <!-- Modal -->
+      <!-- <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> -->
     </div>
 
     <footer class="footer">

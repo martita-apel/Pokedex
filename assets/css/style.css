@@ -104,6 +104,47 @@ img {
   padding: 20px;
 }
 
+.pokemon__nombre,
+.pokemon__filtro {
+  display: flex;
+  justify-content: center;
+  background-color: #ffd100;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.nombre_card {
+  width: 60%;
+  margin: 20px 30px 50px 30px;
+  border: 0;
+  flex-direction: row;
+}
+
+.filtro_card {
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.filtro_boton {
+  text-decoration: none;
+}
+
+.filtro-datos {
+  padding: 10px;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+#pokemontipo {
+  color: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 8px;
+}
+
 footer {
   background-color: #003257;
   color: white;
