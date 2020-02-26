@@ -23,7 +23,7 @@ $("#search__boton").click(function(e) {
   e.preventDefault();
   var cargar = $("#search__input")[0].value;
   if (cargar == "") {
-    alert("No has ingresado ningún Pokemon (en inglés).");
+    alert("No has ingresado ningún Pokemon.");
   } else {
     nombrePokemon(cargar);
   }
@@ -60,28 +60,29 @@ $("#search__boton").click(function(e) {
       };
 
       let tipo = "";
+      let color;
       for (let i = 0; i < data.types.length; i++) {
-        tipo += data.types[i].type.name + " ";
-        let color = colores[data.types[i].type.name];
+        // tipo += data.types[i].type.name + " ";
+        color = colores[data.types[i].type.name];
 
-        // tipo +=
-        //   "<span style=backgroundColor:" +
-        //   "colores[data.types[i].type.name]" +
-        //   ">" +
-        //   data.types[i].type.name +
-        //   "</span>" +
-        //   " ";
+        tipo +=
+          "<span style='background:" +
+          colores[data.types[i].type.name] +
+          "; padding: 7px 15px; border-radius: 8px'>" +
+          data.types[i].type.name +
+          "</span>" +
+          " ";
         // tipo += data.types[i].type.name.fontcolor("green") + " ";
       }
-      $("#pokemontipo")[0].innerHTML = tipo.color;
+      $("#pokemontipo")[0].innerHTML = tipo;
 
-      let habilidad = [];
+      let habilidad = "";
       for (let i = 0; i < data.abilities.length; i++) {
         habilidad += data.abilities[i].ability.name + " / ";
         // console.log(habilidad.join(" - "));
       }
 
-      $("#pokemonhab")[0].innerHTML += habilidad;
+      $("#pokemonhab")[0].innerHTML = habilidad;
     });
   }
 });
@@ -92,13 +93,13 @@ $("#filtro__boton").click(function(e) {
   e.preventDefault();
   var cargar = $("#filtro__input")[0].value;
   if (cargar == "") {
-    alert("");
+    alert("Debes ingresar el tipo de Pokemon que quieres buscar.");
   } else {
     filtrarPokemon(cargar);
   }
 
   function filtrarPokemon(cargar) {
-    $("#filtro").html("");
+    // $("#filtro").html("");
 
     $.get("https://pokeapi.co/api/v2/type/" + cargar, function(data) {
       console.log(data);
@@ -114,22 +115,32 @@ $("#filtro__boton").click(function(e) {
           "<h5 class='card-title'>" +
           lista[i].pokemon.name.toUpperCase() +
           "</h5>" +
-          "<button type='button' class='btn btn-primary' data-toggle='modal'" +
-          "data-target='#exampleModal'>Ver más</button>" +
+          "<button type='button' class='btn btn-primary' data-toggle='modal' onclick='graficoPokemon(" +
+          (i + 1) +
+          ")'" +
+          "data-target='#pokemonGrafico" +
+          (i + 1) +
+          "''>Ver más</button>" +
           "</div>" +
           "</div>" +
           "<br>" +
           // Empieza Modal
-          '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"' +
+          '<div class="modal fade" id="pokemonGrafico' +
+          (i + 1) +
+          '""tabindex="-1" role="dialog"' +
           'aria-labelledby="exampleModalLabel" aria-hidden="true">' +
           '<div class="modal-dialog" role="document">' +
-          '<div class="modal-content">' +
+          '<div class="modal-content" style="width: 550px;">' +
           '<div class="modal-header">' +
           '<h5 class="modal-title" id="exampleModalLabel">' +
           lista[i].pokemon.name.toUpperCase() +
           "</h5>" +
           "</div>" +
-          '<div class="modal-body">...</div>' +
+          '<div id="graficoPok' +
+          (i + 1) +
+          '"class="modal-body" style="height: 430px; width: 550px;">' +
+          "" +
+          " </div>" +
           '<div class="modal-footer">' +
           '<button type="button" class="btn btn-secondary" data-dismiss="modal"' +
           ">" +
@@ -139,7 +150,7 @@ $("#filtro__boton").click(function(e) {
           "</div>" +
           "</div>" +
           "</div>";
-        console.log(tipos);
+        // console.log(tipos);
       }
 
       $("#filtro")[0].innerHTML = tipos;
@@ -147,27 +158,40 @@ $("#filtro__boton").click(function(e) {
   }
 });
 
-// GitHub
-// var request = require("request");
+// Gráfico en Modal
 
-// module.exports = {
-//   getPokedex: function(req, res, next) {
-//     var name = req.params.name;
-//     request("https://pokeapi.co/api/v2/pokedex/" + name + "/", function(
-//       error,
-//       response,
-//       body
-//     ) {
-//       var pokedex = JSON.parse(body);
-//       var arrayPokemon = [];
-//       for (var i = 0; i < pokedex.pokemon_entries.length; i++) {
-//         var number = pokedex.pokemon_entries[i].entry_number;
-//         var pokemonName = pokedex.pokemon_entries[i].pokemon_species.name;
-//         arrayPokemon.push({ id: number, name: pokemonName });
-//       }
-//       res.send(arrayPokemon);
-//     });
-//   },
-//   getPokemon: function(req, res, next) {},
-//   getRandomTeam: function(req, res, next) {}
-// };
+function graficoPokemon(i) {
+  $.get("https://pokeapi.co/api/v2/pokemon/" + i, function(data) {
+    console.log(data);
+    let caract = data.stats;
+    let cPokemon = [];
+    for (let i = 0; i < caract.length; i++) {
+      var hola = { y: caract[i].base_stat, label: caract[i].stat.name };
+      cPokemon.push(hola);
+      console.log(cPokemon);
+    }
+    grafico(i, cPokemon);
+  });
+}
+
+const grafico = function(i, cPokemon) {
+  var chart = new CanvasJS.Chart("graficoPok" + i, {
+    animationEnabled: true,
+    title: {
+      text: "Estadísticas",
+      horizontalAlign: "left"
+    },
+    data: [
+      {
+        type: "doughnut",
+        startAngle: 60,
+        //innerRadius: 60,
+        indexLabelFontSize: 15,
+        indexLabel: "{label} - #percent%",
+        toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+        dataPoints: cPokemon
+      }
+    ]
+  });
+  chart.render();
+};
